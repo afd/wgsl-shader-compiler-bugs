@@ -26,6 +26,7 @@ Untransformed shader is: https://github.com/mc-imperial/wgsl-fuzz/blob/main/samp
 - Windows Version: 24H2
 - CPU: AMD Ryzen 7 5725U with Radeon Graphics
 - RAM: 16 GB
+- Chrome Version: 138.0.7204.184 (Official Build) (64-bit)
 
 ## Desired Image:
 
@@ -34,5 +35,7 @@ Untransformed shader is: https://github.com/mc-imperial/wgsl-fuzz/blob/main/samp
 ## Wrong Image Output:
 
 ![Wrong output of shader](./variant07.0.png)
+
+![Wrong output of reduced shader](./simpler-version-bad-pillars-31-july.png)
 
 When repeat rendering of the shader the image is slightly different but looks similar to the above.
