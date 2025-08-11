@@ -1,0 +1,1141 @@
+{
+    "tu": {
+        "directives": [],
+        "globalDecls": [
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Struct",
+                "name": "Uniforms",
+                "members": [
+                    {
+                        "name": "injectionSwitch",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec2f"
+                        }
+                    },
+                    {
+                        "name": "resolution",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.Vec2",
+                            "elementType": {
+                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Variable",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Group",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    },
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Binding",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    }
+                ],
+                "name": "ub",
+                "addressSpace": "UNIFORM",
+                "typeDecl": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "Uniforms"
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Vertex"
+                    }
+                ],
+                "name": "vertexMain",
+                "parameters": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "com.wgslfuzz.core.Attribute.Location",
+                                "expression": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                }
+                            }
+                        ],
+                        "name": "pos",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec2f"
+                        }
+                    }
+                ],
+                "returnAttributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Builtin",
+                        "name": "POSITION"
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "vec4f"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                "callee": "vec4f",
+                                "args": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "pos"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "0"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "1"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "name": "checkSwap",
+                "parameters": [
+                    {
+                        "name": "gl_FragCoord",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec4f"
+                        }
+                    },
+                    {
+                        "name": "a",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.F32"
+                        }
+                    },
+                    {
+                        "name": "b",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.F32"
+                        }
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.Bool"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                "callee": "select",
+                                "args": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                        "target": {
+                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                            "operator": "LESS_THAN",
+                                            "lhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "a"
+                                            },
+                                            "rhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "b"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                        "target": {
+                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                            "operator": "GREATER_THAN",
+                                            "lhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "a"
+                                            },
+                                            "rhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "b"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                        "operator": "LESS_THAN",
+                                        "lhs": {
+                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                            "receiver": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "gl_FragCoord"
+                                            },
+                                            "memberName": "y"
+                                        },
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.AugmentedExpression.MulOne",
+                                            "originalExpression": {
+                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                "operator": "DIVIDE",
+                                                "lhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                                    "args": [
+                                                        {
+                                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                            "receiver": {
+                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                "receiver": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "ub"
+                                                                },
+                                                                "memberName": "resolution"
+                                                            },
+                                                            "memberName": "y"
+                                                        }
+                                                    ]
+                                                },
+                                                "rhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                    "text": "2.0"
+                                                }
+                                            },
+                                            "oneExpression": {
+                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                "knownValue": {
+                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                    "text": "1.0f"
+                                                },
+                                                "expression": {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "MINUS",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                                        "args": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                "text": "256i"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                        "knownValue": {
+                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                            "text": "255f"
+                                                        },
+                                                        "expression": {
+                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                            "operator": "MINUS",
+                                                            "lhs": {
+                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                "knownValue": {
+                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                    "text": "6738570f"
+                                                                },
+                                                                "expression": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                    "operator": "MINUS",
+                                                                    "lhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                        "text": "15537770f"
+                                                                    },
+                                                                    "rhs": {
+                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                        "knownValue": {
+                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                            "text": "8799200f"
+                                                                        },
+                                                                        "expression": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                            "operator": "PLUS",
+                                                                            "lhs": {
+                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                "knownValue": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                    "text": "1.0f"
+                                                                                },
+                                                                                "expression": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                    "target": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                        "receiver": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                            "name": "ub"
+                                                                                        },
+                                                                                        "memberName": "injectionSwitch"
+                                                                                    },
+                                                                                    "index": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                        "text": "1"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "rhs": {
+                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                "knownValue": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                    "text": "8799199f"
+                                                                                },
+                                                                                "expression": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                    "operator": "PLUS",
+                                                                                    "lhs": {
+                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                        "knownValue": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                            "text": "0.0f"
+                                                                                        },
+                                                                                        "expression": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                            "target": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                                "receiver": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                                    "name": "ub"
+                                                                                                },
+                                                                                                "memberName": "injectionSwitch"
+                                                                                            },
+                                                                                            "index": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                "text": "0"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "rhs": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                        "text": "8799199f"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "rhs": {
+                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                "knownValue": {
+                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                    "text": "6738315f"
+                                                                },
+                                                                "expression": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                    "operator": "PLUS",
+                                                                    "lhs": {
+                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                        "knownValue": {
+                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                            "text": "4371258f"
+                                                                        },
+                                                                        "expression": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                            "operator": "MINUS",
+                                                                            "lhs": {
+                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                "knownValue": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                    "text": "9646527f"
+                                                                                },
+                                                                                "expression": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                    "operator": "PLUS",
+                                                                                    "lhs": {
+                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                        "knownValue": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                            "text": "1.0f"
+                                                                                        },
+                                                                                        "expression": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                            "target": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                                "receiver": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                                    "name": "ub"
+                                                                                                },
+                                                                                                "memberName": "injectionSwitch"
+                                                                                            },
+                                                                                            "index": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                "text": "1"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "rhs": {
+                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                        "knownValue": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                            "text": "9646526f"
+                                                                                        },
+                                                                                        "expression": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                            "operator": "MINUS",
+                                                                                            "lhs": {
+                                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                "knownValue": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                    "text": "16086923f"
+                                                                                                },
+                                                                                                "expression": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                                    "operator": "PLUS",
+                                                                                                    "lhs": {
+                                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                        "knownValue": {
+                                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                            "text": "1.0f"
+                                                                                                        },
+                                                                                                        "expression": {
+                                                                                                            "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                                            "target": {
+                                                                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                                                "receiver": {
+                                                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                                                    "name": "ub"
+                                                                                                                },
+                                                                                                                "memberName": "injectionSwitch"
+                                                                                                            },
+                                                                                                            "index": {
+                                                                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                                "text": "1"
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "rhs": {
+                                                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                        "text": "16086922f"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "rhs": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                "text": "6440397f"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "rhs": {
+                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                "knownValue": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                    "text": "5275269f"
+                                                                                },
+                                                                                "expression": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                    "operator": "PLUS",
+                                                                                    "lhs": {
+                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                        "knownValue": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                            "text": "5275013f"
+                                                                                        },
+                                                                                        "expression": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                            "operator": "MINUS",
+                                                                                            "lhs": {
+                                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                "knownValue": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                    "text": "14218803f"
+                                                                                                },
+                                                                                                "expression": {
+                                                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                                    "operator": "PLUS",
+                                                                                                    "lhs": {
+                                                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                        "knownValue": {
+                                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                            "text": "8185511f"
+                                                                                                        },
+                                                                                                        "expression": {
+                                                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                                            "operator": "PLUS",
+                                                                                                            "lhs": {
+                                                                                                                "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                                "text": "1585883f"
+                                                                                                            },
+                                                                                                            "rhs": {
+                                                                                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                                                "operator": "TIMES",
+                                                                                                                "lhs": {
+                                                                                                                    "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                                    "knownValue": {
+                                                                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                                        "text": "2f"
+                                                                                                                    },
+                                                                                                                    "expression": {
+                                                                                                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                                                        "operator": "MINUS",
+                                                                                                                        "lhs": {
+                                                                                                                            "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                                                                                                            "args": [
+                                                                                                                                {
+                                                                                                                                    "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                                                                    "knownValue": {
+                                                                                                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                                                        "text": "256i"
+                                                                                                                                    },
+                                                                                                                                    "expression": {
+                                                                                                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                                                                        "target": {
+                                                                                                                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                                                                            "receiver": {
+                                                                                                                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                                                                                "name": "ub"
+                                                                                                                                            },
+                                                                                                                                            "memberName": "resolution"
+                                                                                                                                        },
+                                                                                                                                        "index": {
+                                                                                                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                                                            "text": "1"
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "rhs": {
+                                                                                                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                                            "text": "254f"
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "rhs": {
+                                                                                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                                    "text": "3299814f"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "rhs": {
+                                                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                        "text": "6033292f"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "rhs": {
+                                                                                                "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                                                "text": "8943790f"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "rhs": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                                                                        "args": [
+                                                                                            {
+                                                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                                "text": "256i"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "rhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                                        "text": "2367057f"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "oneOnLeft": true
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Fragment"
+                    }
+                ],
+                "name": "fragmentMain",
+                "parameters": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "com.wgslfuzz.core.Attribute.Builtin",
+                                "name": "POSITION"
+                            }
+                        ],
+                        "name": "gl_FragCoord",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec4f"
+                        }
+                    }
+                ],
+                "returnAttributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Location",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "vec4f"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "data",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.Array",
+                                "elementType": {
+                                    "type": "com.wgslfuzz.core.TypeDecl.F32"
+                                },
+                                "elementCount": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "10"
+                                }
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.For",
+                            "init": {
+                                "type": "com.wgslfuzz.core.Statement.Variable",
+                                "name": "i",
+                                "typeDecl": {
+                                    "type": "com.wgslfuzz.core.TypeDecl.I32"
+                                },
+                                "initializer": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                }
+                            },
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                "operator": "LESS_THAN",
+                                "lhs": {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "i"
+                                },
+                                "rhs": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "10"
+                                }
+                            },
+                            "update": {
+                                "type": "com.wgslfuzz.core.Statement.Increment",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                    "name": "i"
+                                }
+                            },
+                            "body": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Assignment",
+                                        "lhsExpression": {
+                                            "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                "name": "data"
+                                            },
+                                            "index": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "i"
+                                            }
+                                        },
+                                        "assignmentOperator": "EQUAL",
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "MINUS",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "10"
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "i"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.For",
+                            "init": {
+                                "type": "com.wgslfuzz.core.Statement.Variable",
+                                "name": "i",
+                                "typeDecl": {
+                                    "type": "com.wgslfuzz.core.TypeDecl.I32"
+                                },
+                                "initializer": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                }
+                            },
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                "operator": "LESS_THAN",
+                                "lhs": {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "i"
+                                },
+                                "rhs": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "9"
+                                }
+                            },
+                            "update": {
+                                "type": "com.wgslfuzz.core.Statement.Increment",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                    "name": "i"
+                                }
+                            },
+                            "body": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.For",
+                                        "init": {
+                                            "type": "com.wgslfuzz.core.Statement.Variable",
+                                            "name": "j",
+                                            "typeDecl": {
+                                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                                            },
+                                            "initializer": {
+                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                "text": "0"
+                                            }
+                                        },
+                                        "condition": {
+                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                            "operator": "LESS_THAN",
+                                            "lhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "j"
+                                            },
+                                            "rhs": {
+                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                "text": "10"
+                                            }
+                                        },
+                                        "update": {
+                                            "type": "com.wgslfuzz.core.Statement.Increment",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                "name": "j"
+                                            }
+                                        },
+                                        "body": {
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.If",
+                                                    "condition": {
+                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                            "operator": "LESS_THAN",
+                                                            "lhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                "name": "j"
+                                                            },
+                                                            "rhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                "operator": "PLUS",
+                                                                "lhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "i"
+                                                                },
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                    "text": "1"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "thenBranch": {
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Continue"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.Value",
+                                                    "isConst": false,
+                                                    "name": "doSwap",
+                                                    "initializer": {
+                                                        "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                                        "callee": "checkSwap",
+                                                        "args": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                "name": "gl_FragCoord"
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "data"
+                                                                },
+                                                                "index": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "i"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "data"
+                                                                },
+                                                                "index": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "j"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.If",
+                                                    "condition": {
+                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "doSwap"
+                                                        }
+                                                    },
+                                                    "thenBranch": {
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Value",
+                                                                "isConst": false,
+                                                                "name": "temp",
+                                                                "initializer": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "data"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "i"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                        "name": "data"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "i"
+                                                                    }
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "data"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "j"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                        "name": "data"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "j"
+                                                                    }
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "temp"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.If",
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "LESS_THAN",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "gl_FragCoord"
+                                        },
+                                        "memberName": "x"
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                        "operator": "DIVIDE",
+                                        "lhs": {
+                                            "type": "com.wgslfuzz.core.Expression.F32ValueConstructor",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                        "receiver": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "ub"
+                                                        },
+                                                        "memberName": "resolution"
+                                                    },
+                                                    "memberName": "x"
+                                                }
+                                            ]
+                                        },
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                            "text": "2.0"
+                                        }
+                                    }
+                                }
+                            },
+                            "thenBranch": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Return",
+                                        "expression": {
+                                            "type": "com.wgslfuzz.core.Expression.Vec4ValueConstructor",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "0"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "5"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "9"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                    "text": "1.0"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "elseBranch": {
+                                "type": "com.wgslfuzz.core.Statement.Compound",
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Return",
+                                        "expression": {
+                                            "type": "com.wgslfuzz.core.Expression.Vec4ValueConstructor",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "5"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "9"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "DIVIDE",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "data"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "0"
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                        "text": "10.0"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                                    "text": "1.0"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "pipelineState": {
+        "uniformValues": {
+            "0": {
+                "0": {
+                    "type": "com.wgslfuzz.core.Expression.StructValueConstructor",
+                    "constructorName": "Uniforms",
+                    "args": [
+                        {
+                            "type": "com.wgslfuzz.core.Expression.Vec2ValueConstructor",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                    "text": "0.0f"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.FloatLiteral",
+                                    "text": "1.0f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Expression.Vec2ValueConstructor",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "256i"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "256i"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
