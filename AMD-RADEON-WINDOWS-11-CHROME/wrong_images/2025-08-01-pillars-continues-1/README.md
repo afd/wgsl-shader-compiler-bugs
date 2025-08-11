@@ -28,19 +28,25 @@ Untransformed shader is: https://github.com/mc-imperial/wgsl-fuzz/blob/main/samp
 - RAM: 16 GB
 
 
-Google Chrome
+Google Chrome:
 138.0.7204.184 (Official Build) (64-bit) (cohort: Stable) 
-Revision
+
+Revision:
 7ea839044480a944888296dc0cccc5afb60b736c-refs/branch-heads/7204@{#2436}
-OS
+
+OS:
 Windows 11 Version 24H2 (Build 26100.4770)
-JavaScript
+
+JavaScript:
 V8 13.8.258.30
-User agent
+
+User agent:
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-Command Line
+
+Command Line:
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --flag-switches-begin --flag-switches-end
-Executable Path
+
+Executable Path:
 C:\Program Files\Google\Chrome\Application\chrome.exe
 
 ## Desired Image:
