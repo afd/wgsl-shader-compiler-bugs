@@ -51,3 +51,6 @@ Command Line:
 
 Executable Path:
 C:\Program Files\Google\Chrome\Application\chrome.exe
+
+This was found as a part of the wgsl-fuzz project.
+https://github.com/mc-imperial
