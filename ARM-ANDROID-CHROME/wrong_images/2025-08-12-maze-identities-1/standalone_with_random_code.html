@@ -1,0 +1,575 @@
+<!--
+Copyright 2025 The wgsl-fuzz Project Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wgsl-fuzz Worker</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        padding: 2rem;
+        background-color: #fafafa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      canvas {
+        display: block;
+        border: 1px solid #ccc;
+        margin-top: 1rem;
+      }
+
+      pre#output {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>wgsl-fuzz Worker</h1>
+      <canvas
+        id="thecanvas"
+        width="256"
+        height="256"
+        aria-label="WebGPU rendering canvas"
+      ></canvas>
+      <pre id="output" aria-live="polite"></pre>
+    </main>
+
+    <script type="module">
+      /*
+       * Copyright 2025 The wgsl-fuzz Project Authors
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *     https://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+
+      function canvasToPngJson(canvas) {
+        const [, base64Data] = canvas.toDataURL("image/png").split(",", 2);
+        return {
+          type: "image/png",
+          encoding: "base64",
+          data: base64Data,
+        };
+      }
+
+      async function renderImage(job, device, canvas) {
+        const vertices = new Float32Array([
+          -1.0,
+          -1.0, // Triangle 1
+          1.0,
+          -1.0,
+          1.0,
+          1.0,
+
+          -1.0,
+          -1.0, // Triangle 2
+          1.0,
+          1.0,
+          -1.0,
+          1.0,
+        ]);
+
+        const renderTarget = device.createTexture({
+          size: [canvas.width, canvas.height],
+          format: "rgba8unorm",
+          usage:
+            GPUTextureUsage.RENDER_ATTACHMENT |
+            GPUTextureUsage.TEXTURE_BINDING |
+            GPUTextureUsage.COPY_SRC,
+        });
+
+        const renderTargetView = renderTarget.createView();
+
+        const vertexBuffer = device.createBuffer({
+          label: "Vertices",
+          size: vertices.byteLength,
+          usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+        });
+
+        device.queue.writeBuffer(vertexBuffer, /*bufferOffset=*/ 0, vertices);
+
+        const vertexBufferLayout = {
+          arrayStride: 8,
+          attributes: [
+            {
+              format: "float32x2",
+              offset: 0,
+              shaderLocation: 0, // 'position' in vertex shader
+            },
+          ],
+        };
+
+        device.pushErrorScope("validation");
+        device.pushErrorScope("out-of-memory");
+        device.pushErrorScope("internal");
+        const shaderModule = device.createShaderModule({
+          label: "Shader",
+          code: job.shaderText,
+        });
+        const createShaderModuleErrorsInternal = device.popErrorScope();
+        const createShaderModuleErrorsOutOfMemory = device.popErrorScope();
+        const createShaderModuleErrorsValidation = device.popErrorScope();
+
+        device.pushErrorScope("validation");
+        device.pushErrorScope("out-of-memory");
+        device.pushErrorScope("internal");
+        const uniformBufferBindingsOnDeviceByGroup = new Map();
+        var maxBindGroup = 0;
+        for (const uniformBufferForJob of job.uniformBuffers) {
+          const length = uniformBufferForJob.data.length;
+          const group = uniformBufferForJob.group;
+          const binding = uniformBufferForJob.binding;
+          maxBindGroup = Math.max(group, maxBindGroup);
+          const uniformArray = new Uint8Array(Math.max(length, 16)); // 16 is minimum binding size - is this fixed?
+          for (let i = 0; i < length; i++) {
+            uniformArray[i] = uniformBufferForJob.data[i];
+          }
+          const uniformBufferOnDevice = device.createBuffer({
+            label: "Uniform buffer, group " + group + ", binding " + binding,
+            size: uniformArray.byteLength,
+            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+          });
+          device.queue.writeBuffer(uniformBufferOnDevice, 0, uniformArray);
+          if (!uniformBufferBindingsOnDeviceByGroup.has(group)) {
+            uniformBufferBindingsOnDeviceByGroup.set(group, []);
+          }
+          uniformBufferBindingsOnDeviceByGroup.get(group).push({
+            binding: binding,
+            resource: {
+              buffer: uniformBufferOnDevice,
+            },
+          });
+        }
+
+        const pipeline = device.createRenderPipeline({
+          label: "Pipeline",
+          layout: "auto",
+          vertex: {
+            module: shaderModule,
+            entryPoint: "vertexMain",
+            buffers: [vertexBufferLayout],
+          },
+          fragment: {
+            module: shaderModule,
+            entryPoint: "fragmentMain",
+            targets: [
+              {
+                format: "rgba8unorm",
+              },
+            ],
+          },
+        });
+
+        const renderToTextureEncoder = device.createCommandEncoder({
+          label: "Render to texture encoder",
+        });
+
+        const pass = renderToTextureEncoder.beginRenderPass({
+          label: "Render pass",
+          colorAttachments: [
+            {
+              view: renderTargetView,
+              clearValue: { r: 0.5, g: 0, b: 0.5, a: 1.0 },
+              loadOp: "clear",
+              storeOp: "store",
+            },
+          ],
+        });
+
+        pass.setPipeline(pipeline);
+        pass.setVertexBuffer(0, vertexBuffer);
+
+        for (let i = 0; i <= maxBindGroup; i++) {
+          if (!uniformBufferBindingsOnDeviceByGroup.has(i)) {
+            continue;
+          }
+          const entries = uniformBufferBindingsOnDeviceByGroup.get(i);
+          const bindGroup = device.createBindGroup({
+            label: "Bind group " + i,
+            layout: pipeline.getBindGroupLayout(i),
+            entries: entries,
+          });
+          pass.setBindGroup(i, bindGroup);
+        }
+
+        pass.draw(vertices.length / 2);
+        pass.end();
+
+        device.queue.submit([renderToTextureEncoder.finish()]);
+
+        const compilationInfo = await shaderModule.getCompilationInfo();
+
+        vertexBuffer.destroy();
+
+        const otherErrorsInternal = device.popErrorScope();
+        const otherErrorsOutOfMemory = device.popErrorScope();
+        const otherErrorsValidation = device.popErrorScope();
+
+        const renderImageResult = {
+          compilationMessages: compilationInfo.messages.map((message) => ({
+            message: message.message,
+            type: message.type.toString(),
+            lineNum: message.lineNum,
+            linePos: message.linePos,
+            offset: message.offset,
+            length: message.length,
+          })),
+        };
+
+        var errorOccurred = false;
+
+        await createShaderModuleErrorsInternal.then((error) => {
+          if (error) {
+            renderImageResult.createShaderModuleInternalError = error.message;
+            errorOccurred = true;
+          }
+        });
+
+        await createShaderModuleErrorsOutOfMemory.then((error) => {
+          if (error) {
+            renderImageResult.createShaderModuleOutOfMemoryError =
+              error.message;
+            errorOccurred = true;
+          }
+        });
+
+        await createShaderModuleErrorsValidation.then((error) => {
+          if (error) {
+            renderImageResult.createShaderModuleValidationError = error.message;
+            errorOccurred = true;
+          }
+        });
+
+        await otherErrorsInternal.then((error) => {
+          if (error) {
+            renderImageResult.otherInternalError = error.message;
+            errorOccurred = true;
+          }
+        });
+
+        await otherErrorsOutOfMemory.then((error) => {
+          if (error) {
+            renderImageResult.otherOutOfMemoryError = error.message;
+            errorOccurred = true;
+          }
+        });
+
+        await otherErrorsValidation.then((error) => {
+          if (error) {
+            renderImageResult.otherValidationError = error.message;
+            errorOccurred = true;
+          }
+        });
+
+        if (!errorOccurred) {
+          const copyFromTextureEncoder = device.createCommandEncoder({
+            label: "Copy from texture encoder",
+          });
+          const outputBuffer = device.createBuffer({
+            size: canvas.width * canvas.height * 4, // 4 bytes per pixel
+            usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
+          });
+          copyFromTextureEncoder.copyTextureToBuffer(
+            { texture: renderTarget },
+            {
+              buffer: outputBuffer,
+              bytesPerRow: canvas.width * 4,
+              rowsPerImage: canvas.height,
+            },
+            {
+              width: canvas.width,
+              height: canvas.height,
+              depthOrArrayLayers: 1,
+            }
+          );
+          device.queue.submit([copyFromTextureEncoder.finish()]);
+          await outputBuffer.mapAsync(GPUMapMode.READ);
+          const arrayBuffer = outputBuffer.getMappedRange();
+          const pixelBytes = new Uint8Array(arrayBuffer.slice(0)); // Copy it out
+          outputBuffer.unmap();
+
+          const imageData = new ImageData(
+            new Uint8ClampedArray(pixelBytes), // must be Uint8ClampedArray
+            canvas.width,
+            canvas.height
+          );
+          const context = canvas.getContext("2d");
+          context.putImageData(imageData, 0, 0);
+          renderImageResult.frame = canvasToPngJson(canvas);
+        }
+
+        return renderImageResult;
+      }
+
+      export async function executeJob(job, repetitions) {
+        const jobResult = {
+          fatalErrors: [],
+          deviceLostReason: null,
+          adapterInfo: null,
+          renderImageResults: [],
+        };
+
+        const canvas = document.querySelector("canvas");
+
+        if (!navigator.gpu) {
+          jobResult.fatalErrors.push("WebGPU not supported on this browser.");
+          return jobResult;
+        }
+
+        let adapter;
+        try {
+          adapter = await navigator.gpu.requestAdapter();
+        } catch (err) {
+          jobResult.fatalErrors.push(
+            `Failed to request GPU adapter: ${err?.message || String(err)}`
+          );
+          return jobResult;
+        }
+
+        if (!adapter) {
+          jobResult.fatalErrors.push("No appropriate GPUAdapter found.");
+          return jobResult;
+        }
+
+        const adapterInfo = adapter.info;
+        jobResult.adapterInfo = {
+          vendor: adapterInfo.vendor,
+          architecture: adapterInfo.architecture,
+          device: adapterInfo.device,
+          description: adapterInfo.description,
+        };
+
+        let device;
+        try {
+          device = await adapter.requestDevice();
+        } catch (err) {
+          jobResult.fatalErrors.push(
+            `Failed to request device: ${err?.message || String(err)}`
+          );
+          return jobResult;
+        }
+
+        let destroyCalledExplicitly = false;
+
+        device.lost.then((info) => {
+          if (!destroyCalledExplicitly) {
+            jobResult.deviceLostReason = info.reason;
+            jobResult.fatalErrors.push(`Device lost: ${info.message}`);
+          }
+        });
+
+        device.addEventListener("uncapturederror", (event) => {
+          console.error("A WebGPU error was not captured: ", event.error);
+          jobResult.fatalErrors.push(event.error.message);
+        });
+
+        for (let i = 0; i < repetitions; i++) {
+          if (jobResult.fatalErrors.length > 0) {
+            break;
+          }
+          try {
+            jobResult.renderImageResults.push(
+              await renderImage(job, device, canvas)
+            );
+          } catch (err) {
+            jobResult.fatalErrors.push(err?.message || String(err));
+          }
+        }
+
+        if (jobResult.deviceLostReason != "destroyed") {
+          try {
+            // Record that we are intentionally destroying the device, so that we do
+            // not record this (expected) destruction event as a reason for device
+            // loss
+            destroyCalledExplicitly = true;
+            device.destroy();
+          } catch (err) {
+            jobResult.fatalErrors.push(err?.message || String(err));
+          }
+        }
+
+        return jobResult;
+      }
+
+      const shaderText = `
+  @group(0)
+  @binding(0)
+  var<uniform> resolution : vec2<i32>;
+  
+  var<private> map : array<i32, 16 * 16>;
+  
+  @vertex
+  fn vertexMain(
+      @location(0)
+      pos : vec2f,
+  ) ->
+          @builtin(position)
+      vec4f
+  {
+      return vec4f(pos, 0, 1, );
+  }
+  
+  @fragment
+  fn fragmentMain(
+      @builtin(position)
+      gl_FragCoord : vec4f,
+  ) ->
+          @location(0)
+      vec4f
+  {
+      let pos = gl_FragCoord.xy / vec2(f32(resolution.x, ), f32(resolution.y, ), );
+      let ipos = vec2(i32((/* div by one */ (pos.x * 16) /  (/* known value: 1f */ 530917f - (/* known value: 530916f */ (/* known value: 2f */ f32((/* known value: 256i */ resolution[1]), ) - 254f) * 265458f))), ), i32(pos.y * 16, ), );
+  
+      /* This code does not change ipos as ipos is immutable */
+      for (var i = 0; i < 16 * 16; i++)
+      {
+          map[i] = 0;
+      }
+      var p = vec2<i32>(0, 0, );
+      var canWalk = true;
+      var v = 0;
+      while (canWalk)
+      {
+          v++;
+          var direction = 0;
+          if (p.x > 0 && map[(p.x - 2) + p.y * 16] == 0)
+          {
+              direction++;
+          }
+          if (p.y > 0 && map[p.x + (p.y - 2) * 16] == 0)
+          {
+              direction++;
+          }
+          if (p.x < 14 && map[(p.x + 2) + p.y * 16] == 0)
+          {
+              direction++;
+          }
+          if (p.y < 14 && map[p.x + (p.y + 2) * 16] == 0)
+          {
+              direction++;
+          }
+          if (direction == 0)
+          {
+              canWalk = false;
+              for (var i = 0; i < 8; i++)
+              {
+                  for (var j = 0; j < 8; j++)
+                  {
+                      if (map[j * 2 + i * 2 * 16] == 0)
+                      {
+                          p.x = j * 2;
+                          p.y = i * 2;
+                          canWalk = true;
+                      }
+                  }
+              }
+              map[p.x + p.y * 16] = 1;
+          }
+          else
+          {
+              var d = v % direction;
+              v += direction;
+              if (d >= 0 && p.x > 0 && map[(p.x - 2) + p.y * 16] == 0)
+              {
+                  d--;
+                  map[p.x + p.y * 16] = 1;
+                  map[(p.x - 1) + p.y * 16] = 1;
+                  map[(p.x - 2) + p.y * 16] = 1;
+                  p.x -= 2;
+              }
+              if (d >= 0 && p.y > 0 && map[p.x + (p.y - 2) * 16] == 0)
+              {
+                  d--;
+                  map[p.x + p.y * 16] = 1;
+                  map[p.x + (p.y - 1) * 16] = 1;
+                  map[p.x + (p.y - 2) * 16] = 1;
+                  p.y -= 2;
+              }
+              if (d >= 0 && p.x < 14 && map[(p.x + 2) + p.y * 16] == 0)
+              {
+                  d--;
+                  map[p.x + p.y * 16] = 1;
+                  map[(p.x + 1) + p.y * 16] = 1;
+                  map[(p.x + 2) + p.y * 16] = 1;
+                  p.x += 2;
+              }
+              if (d >= 0 && p.y < 14 && map[p.x + (p.y + 2) * 16] == 0)
+              {
+                  d--;
+                  map[p.x + p.y * 16] = 1;
+                  map[p.x + (p.y + 1) * 16] = 1;
+                  map[p.x + (p.y + 2) * 16] = 1;
+                  p.y += 2;
+              }
+          }
+      }
+      /* End of random code */
+  
+      /* Code to check ipos is correct */
+      if (ipos.x == i32(pos.x * 16)) {
+        // This condition is always true hence screen should be red
+        return vec4(1, 0, 0, 1);
+      }
+      return vec4(0, 0, 1, 1, );
+  }
+  
+  `;
+
+      const uniformBuffers = [
+        {
+          group: 0,
+          binding: 0,
+          data: [0, 1, 0, 0, 0, 1, 0, 0],
+        },
+      ];
+      const job = {
+        shaderText,
+        uniformBuffers,
+      };
+
+      async function main() {
+        const result = await executeJob(job, 1);
+
+        console.log(result);
+      }
+
+      main();
+    </script>
+  </body>
+</html>
