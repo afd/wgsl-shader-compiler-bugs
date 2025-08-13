@@ -456,8 +456,6 @@ limitations under the License.
       let pos = gl_FragCoord.xy / vec2(f32(resolution.x, ), f32(resolution.y, ), );
       let ipos = vec2(i32((/* div by one */ (pos.x * 16) /  (/* known value: 1f */ 530917f - (/* known value: 530916f */ (/* known value: 2f */ f32((/* known value: 256i */ resolution[1]), ) - 254f) * 265458f))), ), i32(pos.y * 16, ), );
   
-      /* No random code */
-  
       /* Code to check ipos is correct */
       if (ipos.x == i32(pos.x * 16)) {
         // This condition is always true hence screen should be red
