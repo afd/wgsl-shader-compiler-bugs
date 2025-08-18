@@ -4,9 +4,9 @@
 
 On Windows Laptops with AMD or Intel GPUs and on Linux using SwiftShader `bug.html` does render `expected.png`.
 
-But on two phones, one with an ARM Mali gpu and the other a Qualcomm Adreno gpu, `bug.html` renders `wrong_image.png`.
+But on two phones, one with an ARM Mali gpu and the other a Qualcomm Adreno gpu, `bug.html` renders `wrong_image.jpg`.
 
-Note: the single pixel red bar on the left hand side of the `wrong_image.png`.
+Note: the small red bar on the left hand side of`wrong_image.jpg`.
 
 The result seems unexpected and looks like a bug since all the floating point numbers are small enough integers such that there should be no floating point rounding error or etc.
 
@@ -16,9 +16,9 @@ It might therefore look like a bug in tint when targeting SPIR-V, but interestin
 
 ## System details
 
-about:gpu report for Motorola Qualcomm phone is: `TODO`
+about:gpu report for Motorola Qualcomm phone is: `motorola-qualcomm-about-gpu-2025-08-18T09-13-38-981Z.txt`
 
-about:gpu report for Samsung Arm phone is: `TODO`
+about:gpu report for Samsung Arm phone is: `samsung-arm-about-gpu-2025-08-18T09-20-36-295Z.txt`
 
 This was found as a part of the wgsl-fuzz project.
 https://github.com/mc-imperial
