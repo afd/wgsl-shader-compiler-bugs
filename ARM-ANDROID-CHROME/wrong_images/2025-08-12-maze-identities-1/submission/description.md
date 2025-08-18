@@ -8,7 +8,7 @@ But on two phones, one with an ARM Mali gpu and the other a Qualcomm Adreno gpu,
 
 Note: the small red bar on the left hand side of`wrong_image.jpg`.
 
-The result seems unexpected and looks like a bug since all the floating point numbers are small enough integers such that there should be no floating point rounding error or etc.
+The result seems unexpected and looks like a bug since all the floating point numbers are small enough integers such that there should be no floating point rounding error.
 
 It seems unlikely to be an ARM bug or a Qualcomm bug as it would be rather coincidental for them to share the same bug.
 
