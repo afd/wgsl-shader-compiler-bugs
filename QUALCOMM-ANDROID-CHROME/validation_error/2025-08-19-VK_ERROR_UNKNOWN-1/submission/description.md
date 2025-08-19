@@ -1,6 +1,6 @@
 ## Motorola Qualcomm Phone Output
 
-`bug.html` renders `expected.png` on Samsung Arm phone, Dell Intel laptop and Asus AMD laptop
+`bug.html` renders `expected.png` on a Samsung Arm phone using Chrome, a Dell Intel laptop using Chrome and Firefox, and a Asus AMD laptop using Chrome and Firefox
 
 But on a Motorola phone with a Qualcomm gpu it fails to compile and gives the following errors:
 
