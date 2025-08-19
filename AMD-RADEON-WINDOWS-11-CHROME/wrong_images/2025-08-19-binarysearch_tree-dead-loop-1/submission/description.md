@@ -1,6 +1,6 @@
 # Wrong image generated on AMD gpu when rendering a dead loop
 
-`bug.html` should render `expected.png` and does on a laptop with an intel gpu, a phone with an ARM gpu and a phone with a Qualcomm gpu.
+`bug.html` should render `expected.png` and does on a laptop with an Intel gpu, a phone with an ARM gpu and a phone with a Qualcomm gpu.
 
 But on a Asus Vivobook with an AMD Radeon gpu `wrong_images.png` is generated. The left side is Chrome and right side is Firefox.
 This suggests that it is not a problem with either Chrome or Firefox but something todo with this specific GPU or more generally AMD gpus.
