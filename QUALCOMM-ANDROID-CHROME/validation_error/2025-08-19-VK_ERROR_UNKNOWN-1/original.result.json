@@ -1,0 +1,545 @@
+{
+  "type" : "RenderJobResult",
+  "content" : {
+    "fatalErrors" : [ ],
+    "deviceLostReason" : null,
+    "adapterInfo" : {
+      "vendor" : "qualcomm",
+      "architecture" : "adreno-6xx",
+      "device" : "",
+      "description" : ""
+    },
+    "renderImageResults" : [ {
+      "compilationMessages" : [ {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 90,
+        "linePos" : 17,
+        "offset" : 3300,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 117,
+        "linePos" : 21,
+        "offset" : 5484,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 139,
+        "linePos" : 17,
+        "offset" : 6625,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 175,
+        "linePos" : 21,
+        "offset" : 9262,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 168,
+        "linePos" : 17,
+        "offset" : 8908,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 194,
+        "linePos" : 13,
+        "offset" : 10362,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 226,
+        "linePos" : 21,
+        "offset" : 12223,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 312,
+        "linePos" : 25,
+        "offset" : 17775,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 322,
+        "linePos" : 21,
+        "offset" : 18126,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 370,
+        "linePos" : 9,
+        "offset" : 20629,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 446,
+        "linePos" : 13,
+        "offset" : 25640,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 477,
+        "linePos" : 13,
+        "offset" : 28081,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 498,
+        "linePos" : 17,
+        "offset" : 29486,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 538,
+        "linePos" : 5,
+        "offset" : 31017,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 577,
+        "linePos" : 9,
+        "offset" : 34618,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 589,
+        "linePos" : 5,
+        "offset" : 35075,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 691,
+        "linePos" : 9,
+        "offset" : 40607,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 784,
+        "linePos" : 9,
+        "offset" : 44516,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 845,
+        "linePos" : 9,
+        "offset" : 47258,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 893,
+        "linePos" : 13,
+        "offset" : 49907,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 961,
+        "linePos" : 13,
+        "offset" : 52674,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1075,
+        "linePos" : 21,
+        "offset" : 60412,
+        "length" : 5
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1126,
+        "linePos" : 9,
+        "offset" : 63340,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1145,
+        "linePos" : 5,
+        "offset" : 64190,
+        "length" : 2
+      } ],
+      "createShaderModuleValidationError" : null,
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "[Invalid RenderPipeline \"Pipeline\"] is invalid.\n - While Validating GetBindGroupLayout (0) on [Invalid RenderPipeline \"Pipeline\"]\n",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : "CreateGraphicsPipelines failed with VK_ERROR_UNKNOWN\n - While initializing [RenderPipeline \"Pipeline\"]\n - While calling [Device].CreateRenderPipeline([RenderPipelineDescriptor \"\"Pipeline\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
+      "frame" : null
+    }, {
+      "compilationMessages" : [ {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 90,
+        "linePos" : 17,
+        "offset" : 3300,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 117,
+        "linePos" : 21,
+        "offset" : 5484,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 139,
+        "linePos" : 17,
+        "offset" : 6625,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 175,
+        "linePos" : 21,
+        "offset" : 9262,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 168,
+        "linePos" : 17,
+        "offset" : 8908,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 194,
+        "linePos" : 13,
+        "offset" : 10362,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 226,
+        "linePos" : 21,
+        "offset" : 12223,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 312,
+        "linePos" : 25,
+        "offset" : 17775,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 322,
+        "linePos" : 21,
+        "offset" : 18126,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 370,
+        "linePos" : 9,
+        "offset" : 20629,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 446,
+        "linePos" : 13,
+        "offset" : 25640,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 477,
+        "linePos" : 13,
+        "offset" : 28081,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 498,
+        "linePos" : 17,
+        "offset" : 29486,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 538,
+        "linePos" : 5,
+        "offset" : 31017,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 577,
+        "linePos" : 9,
+        "offset" : 34618,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 589,
+        "linePos" : 5,
+        "offset" : 35075,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 691,
+        "linePos" : 9,
+        "offset" : 40607,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 784,
+        "linePos" : 9,
+        "offset" : 44516,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 845,
+        "linePos" : 9,
+        "offset" : 47258,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 893,
+        "linePos" : 13,
+        "offset" : 49907,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 961,
+        "linePos" : 13,
+        "offset" : 52674,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1075,
+        "linePos" : 21,
+        "offset" : 60412,
+        "length" : 5
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1126,
+        "linePos" : 9,
+        "offset" : 63340,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1145,
+        "linePos" : 5,
+        "offset" : 64190,
+        "length" : 2
+      } ],
+      "createShaderModuleValidationError" : null,
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "[Invalid RenderPipeline \"Pipeline\"] is invalid.\n - While Validating GetBindGroupLayout (0) on [Invalid RenderPipeline \"Pipeline\"]\n",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : "CreateGraphicsPipelines failed with VK_ERROR_UNKNOWN\n - While initializing [RenderPipeline \"Pipeline\"]\n - While calling [Device].CreateRenderPipeline([RenderPipelineDescriptor \"\"Pipeline\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
+      "frame" : null
+    }, {
+      "compilationMessages" : [ {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 90,
+        "linePos" : 17,
+        "offset" : 3300,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 117,
+        "linePos" : 21,
+        "offset" : 5484,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 139,
+        "linePos" : 17,
+        "offset" : 6625,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 175,
+        "linePos" : 21,
+        "offset" : 9262,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 168,
+        "linePos" : 17,
+        "offset" : 8908,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 194,
+        "linePos" : 13,
+        "offset" : 10362,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 226,
+        "linePos" : 21,
+        "offset" : 12223,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 312,
+        "linePos" : 25,
+        "offset" : 17775,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 322,
+        "linePos" : 21,
+        "offset" : 18126,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 370,
+        "linePos" : 9,
+        "offset" : 20629,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 446,
+        "linePos" : 13,
+        "offset" : 25640,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 477,
+        "linePos" : 13,
+        "offset" : 28081,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 498,
+        "linePos" : 17,
+        "offset" : 29486,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 538,
+        "linePos" : 5,
+        "offset" : 31017,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 577,
+        "linePos" : 9,
+        "offset" : 34618,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 589,
+        "linePos" : 5,
+        "offset" : 35075,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 691,
+        "linePos" : 9,
+        "offset" : 40607,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 784,
+        "linePos" : 9,
+        "offset" : 44516,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 845,
+        "linePos" : 9,
+        "offset" : 47258,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 893,
+        "linePos" : 13,
+        "offset" : 49907,
+        "length" : 2
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 961,
+        "linePos" : 13,
+        "offset" : 52674,
+        "length" : 3
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1075,
+        "linePos" : 21,
+        "offset" : 60412,
+        "length" : 5
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1126,
+        "linePos" : 9,
+        "offset" : 63340,
+        "length" : 4
+      }, {
+        "message" : "code is unreachable",
+        "type" : "warning",
+        "lineNum" : 1145,
+        "linePos" : 5,
+        "offset" : 64190,
+        "length" : 2
+      } ],
+      "createShaderModuleValidationError" : null,
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "[Invalid RenderPipeline \"Pipeline\"] is invalid.\n - While Validating GetBindGroupLayout (0) on [Invalid RenderPipeline \"Pipeline\"]\n",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : "CreateGraphicsPipelines failed with VK_ERROR_UNKNOWN\n - While initializing [RenderPipeline \"Pipeline\"]\n - While calling [Device].CreateRenderPipeline([RenderPipelineDescriptor \"\"Pipeline\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
+      "frame" : null
+    } ]
+  }
+}
