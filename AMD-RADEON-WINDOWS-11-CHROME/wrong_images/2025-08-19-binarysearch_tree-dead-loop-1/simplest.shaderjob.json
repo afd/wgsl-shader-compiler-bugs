@@ -1,0 +1,1605 @@
+{
+    "tu": {
+        "directives": [],
+        "globalDecls": [
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Struct",
+                "name": "Uniforms",
+                "members": [
+                    {
+                        "name": "values",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec4i"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Variable",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Group",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    },
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Binding",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    }
+                ],
+                "name": "ub",
+                "addressSpace": "UNIFORM",
+                "typeDecl": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "Uniforms"
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Struct",
+                "name": "BST",
+                "members": [
+                    {
+                        "name": "data",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    },
+                    {
+                        "name": "leftIndex",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    },
+                    {
+                        "name": "rightIndex",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Variable",
+                "name": "tree",
+                "addressSpace": "PRIVATE",
+                "typeDecl": {
+                    "type": "com.wgslfuzz.core.TypeDecl.Array",
+                    "elementType": {
+                        "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                        "name": "BST"
+                    },
+                    "elementCount": {
+                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                        "text": "10"
+                    }
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "name": "makeTreeNode",
+                "parameters": [
+                    {
+                        "name": "index",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    }
+                ],
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Assignment",
+                            "lhsExpression": {
+                                "type": "com.wgslfuzz.core.LhsExpression.MemberLookup",
+                                "receiver": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                    "target": {
+                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                        "name": "tree"
+                                    },
+                                    "index": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "index"
+                                    }
+                                },
+                                "memberName": "data"
+                            },
+                            "assignmentOperator": "EQUAL",
+                            "rhs": {
+                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                "name": "data"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Assignment",
+                            "lhsExpression": {
+                                "type": "com.wgslfuzz.core.LhsExpression.MemberLookup",
+                                "receiver": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                    "target": {
+                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                        "name": "tree"
+                                    },
+                                    "index": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "index"
+                                    }
+                                },
+                                "memberName": "leftIndex"
+                            },
+                            "assignmentOperator": "EQUAL",
+                            "rhs": {
+                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                "operator": "MINUS",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "1"
+                                }
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Assignment",
+                            "lhsExpression": {
+                                "type": "com.wgslfuzz.core.LhsExpression.MemberLookup",
+                                "receiver": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                    "target": {
+                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                        "name": "tree"
+                                    },
+                                    "index": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "index"
+                                    }
+                                },
+                                "memberName": "rightIndex"
+                            },
+                            "assignmentOperator": "EQUAL",
+                            "rhs": {
+                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                "operator": "MINUS",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "1"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "name": "insert",
+                "parameters": [
+                    {
+                        "name": "treeIndex",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    }
+                ],
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "baseIndex",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                            },
+                            "initializer": {
+                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                "text": "0"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.While",
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "LESS_THAN_EQUAL",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "baseIndex"
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "treeIndex"
+                                    }
+                                }
+                            },
+                            "body": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.If",
+                                        "condition": {
+                                            "type": "com.wgslfuzz.core.Expression.Paren",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                "operator": "LESS_THAN_EQUAL",
+                                                "lhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                    "name": "data"
+                                                },
+                                                "rhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "tree"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "baseIndex"
+                                                        }
+                                                    },
+                                                    "memberName": "data"
+                                                }
+                                            }
+                                        },
+                                        "thenBranch": {
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.If",
+                                                    "condition": {
+                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                            "operator": "EQUAL_EQUAL",
+                                                            "lhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                "receiver": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "tree"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "baseIndex"
+                                                                    }
+                                                                },
+                                                                "memberName": "leftIndex"
+                                                            },
+                                                            "rhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                                                "operator": "MINUS",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                    "text": "1"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "thenBranch": {
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.MemberLookup",
+                                                                    "receiver": {
+                                                                        "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                            "name": "tree"
+                                                                        },
+                                                                        "index": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "baseIndex"
+                                                                        }
+                                                                    },
+                                                                    "memberName": "leftIndex"
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "treeIndex"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                                                                "callee": "makeTreeNode",
+                                                                "args": [
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "treeIndex"
+                                                                    },
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "data"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Return"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "elseBranch": {
+                                                        "type": "com.wgslfuzz.core.Statement.Compound",
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                    "name": "baseIndex"
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                    "receiver": {
+                                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "tree"
+                                                                        },
+                                                                        "index": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "baseIndex"
+                                                                        }
+                                                                    },
+                                                                    "memberName": "leftIndex"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Continue"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "elseBranch": {
+                                            "type": "com.wgslfuzz.core.Statement.Compound",
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.If",
+                                                    "condition": {
+                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                            "operator": "EQUAL_EQUAL",
+                                                            "lhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                "receiver": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                    "target": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "tree"
+                                                                    },
+                                                                    "index": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "baseIndex"
+                                                                    }
+                                                                },
+                                                                "memberName": "rightIndex"
+                                                            },
+                                                            "rhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                                                "operator": "MINUS",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                    "text": "1"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "thenBranch": {
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.MemberLookup",
+                                                                    "receiver": {
+                                                                        "type": "com.wgslfuzz.core.LhsExpression.IndexLookup",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                            "name": "tree"
+                                                                        },
+                                                                        "index": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "baseIndex"
+                                                                        }
+                                                                    },
+                                                                    "memberName": "rightIndex"
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "treeIndex"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                                                                "callee": "makeTreeNode",
+                                                                "args": [
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "treeIndex"
+                                                                    },
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "data"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Return"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "elseBranch": {
+                                                        "type": "com.wgslfuzz.core.Statement.Compound",
+                                                        "statements": [
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                                "lhsExpression": {
+                                                                    "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                    "name": "baseIndex"
+                                                                },
+                                                                "assignmentOperator": "EQUAL",
+                                                                "rhs": {
+                                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                    "receiver": {
+                                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "tree"
+                                                                        },
+                                                                        "index": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                            "name": "baseIndex"
+                                                                        }
+                                                                    },
+                                                                    "memberName": "rightIndex"
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "com.wgslfuzz.core.Statement.Continue"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "name": "search",
+                "parameters": [
+                    {
+                        "name": "targetElement",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.I32"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "currentNode",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                                "name": "BST"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "index",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                            },
+                            "initializer": {
+                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                "text": "0"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.While",
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "NOT_EQUAL",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "index"
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Unary",
+                                        "operator": "MINUS",
+                                        "target": {
+                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                            "text": "1"
+                                        }
+                                    }
+                                }
+                            },
+                            "body": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Assignment",
+                                        "lhsExpression": {
+                                            "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                            "name": "currentNode"
+                                        },
+                                        "assignmentOperator": "EQUAL",
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "tree"
+                                            },
+                                            "index": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "index"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.If",
+                                        "condition": {
+                                            "type": "com.wgslfuzz.core.Expression.Paren",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                "operator": "EQUAL_EQUAL",
+                                                "lhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "currentNode"
+                                                    },
+                                                    "memberName": "data"
+                                                },
+                                                "rhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                    "name": "targetElement"
+                                                }
+                                            }
+                                        },
+                                        "thenBranch": {
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.Return",
+                                                    "expression": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "targetElement"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.If",
+                                        "condition": {
+                                            "type": "com.wgslfuzz.core.Expression.Paren",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                "operator": "GREATER_THAN",
+                                                "lhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                    "name": "targetElement"
+                                                },
+                                                "rhs": {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "currentNode"
+                                                    },
+                                                    "memberName": "data"
+                                                }
+                                            }
+                                        },
+                                        "thenBranch": {
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                    "lhsExpression": {
+                                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                        "name": "index"
+                                                    },
+                                                    "assignmentOperator": "EQUAL",
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                        "receiver": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "currentNode"
+                                                        },
+                                                        "memberName": "rightIndex"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "elseBranch": {
+                                            "type": "com.wgslfuzz.core.Statement.Compound",
+                                            "statements": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Statement.Assignment",
+                                                    "lhsExpression": {
+                                                        "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                        "name": "index"
+                                                    },
+                                                    "assignmentOperator": "EQUAL",
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                        "receiver": {
+                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                            "name": "currentNode"
+                                                        },
+                                                        "memberName": "leftIndex"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                "operator": "MINUS",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "1"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "name": "contains",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.I32"
+                        }
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.Bool"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                "operator": "SHORT_CIRCUIT_OR",
+                                "lhs": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "SHORT_CIRCUIT_OR",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                        "operator": "SHORT_CIRCUIT_OR",
+                                        "lhs": {
+                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                            "operator": "EQUAL_EQUAL",
+                                            "lhs": {
+                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                "receiver": {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "ub"
+                                                    },
+                                                    "memberName": "values"
+                                                },
+                                                "memberName": "x"
+                                            },
+                                            "rhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "x"
+                                            }
+                                        },
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                            "operator": "EQUAL_EQUAL",
+                                            "lhs": {
+                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                "receiver": {
+                                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                    "receiver": {
+                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                        "name": "ub"
+                                                    },
+                                                    "memberName": "values"
+                                                },
+                                                "memberName": "y"
+                                            },
+                                            "rhs": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "x"
+                                            }
+                                        }
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                        "operator": "EQUAL_EQUAL",
+                                        "lhs": {
+                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                            "receiver": {
+                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                "receiver": {
+                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                    "name": "ub"
+                                                },
+                                                "memberName": "values"
+                                            },
+                                            "memberName": "z"
+                                        },
+                                        "rhs": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "x"
+                                        }
+                                    }
+                                },
+                                "rhs": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "EQUAL_EQUAL",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                            "receiver": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "ub"
+                                            },
+                                            "memberName": "values"
+                                        },
+                                        "memberName": "w"
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "x"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Vertex"
+                    }
+                ],
+                "name": "vertexMain",
+                "parameters": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "com.wgslfuzz.core.Attribute.Location",
+                                "expression": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                }
+                            }
+                        ],
+                        "name": "pos",
+                        "typeDecl": {
+                            "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                            "name": "vec2f"
+                        }
+                    }
+                ],
+                "returnAttributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Builtin",
+                        "name": "POSITION"
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "vec4f"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                "callee": "vec4f",
+                                "args": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "pos"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "0"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "1"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "com.wgslfuzz.core.GlobalDecl.Function",
+                "attributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Fragment"
+                    }
+                ],
+                "name": "fragmentMain",
+                "parameters": [],
+                "returnAttributes": [
+                    {
+                        "type": "com.wgslfuzz.core.Attribute.Location",
+                        "expression": {
+                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                            "text": "0"
+                        }
+                    }
+                ],
+                "returnType": {
+                    "type": "com.wgslfuzz.core.TypeDecl.NamedType",
+                    "name": "vec4f"
+                },
+                "body": {
+                    "statements": [
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "treeIndex",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                            },
+                            "initializer": {
+                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                "text": "0"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "makeTreeNode",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "9"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "5"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "12"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                    "receiver": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "ub"
+                                        },
+                                        "memberName": "values"
+                                    },
+                                    "memberName": "x"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                    "receiver": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "ub"
+                                        },
+                                        "memberName": "values"
+                                    },
+                                    "memberName": "y"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.AugmentedStatement.DeadCodeFragment",
+                            "statement": {
+                                "type": "com.wgslfuzz.core.Statement.Loop",
+                                "body": {
+                                    "statements": [
+                                        {
+                                            "type": "com.wgslfuzz.core.AugmentedStatement.DeadCodeFragment",
+                                            "statement": {
+                                                "type": "com.wgslfuzz.core.Statement.If",
+                                                "condition": {
+                                                    "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                    "knownValue": {
+                                                        "type": "com.wgslfuzz.core.Expression.BoolLiteral",
+                                                        "text": "false"
+                                                    },
+                                                    "expression": {
+                                                        "type": "com.wgslfuzz.core.Expression.Binary",
+                                                        "operator": "NOT_EQUAL",
+                                                        "lhs": {
+                                                            "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                            "target": {
+                                                                "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                "receiver": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                    "name": "ub"
+                                                                },
+                                                                "memberName": "values"
+                                                            },
+                                                            "index": {
+                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                "text": "1"
+                                                            }
+                                                        },
+                                                        "rhs": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "18i"
+                                                        }
+                                                    }
+                                                },
+                                                "thenBranch": {
+                                                    "statements": [
+                                                        {
+                                                            "type": "com.wgslfuzz.core.Statement.Continue"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "com.wgslfuzz.core.Statement.If",
+                                            "condition": {
+                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                "knownValue": {
+                                                    "type": "com.wgslfuzz.core.Expression.BoolLiteral",
+                                                    "text": "true"
+                                                },
+                                                "expression": {
+                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                    "operator": "EQUAL_EQUAL",
+                                                    "lhs": {
+                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                        "knownValue": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "18i"
+                                                        },
+                                                        "expression": {
+                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                            "operator": "PLUS",
+                                                            "lhs": {
+                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                "knownValue": {
+                                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                    "text": "6i"
+                                                                },
+                                                                "expression": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                    "operator": "PLUS",
+                                                                    "lhs": {
+                                                                        "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                        "knownValue": {
+                                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                            "text": "5i"
+                                                                        },
+                                                                        "expression": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                            "operator": "MINUS",
+                                                                            "lhs": {
+                                                                                "type": "com.wgslfuzz.core.AugmentedExpression.KnownValue",
+                                                                                "knownValue": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                    "text": "12i"
+                                                                                },
+                                                                                "expression": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                                                    "target": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                                                        "receiver": {
+                                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                            "name": "ub"
+                                                                                        },
+                                                                                        "memberName": "values"
+                                                                                    },
+                                                                                    "index": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                        "text": "3"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "rhs": {
+                                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                "text": "7i"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "rhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                        "text": "1i"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "rhs": {
+                                                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                "text": "12i"
+                                                            }
+                                                        }
+                                                    },
+                                                    "rhs": {
+                                                        "type": "com.wgslfuzz.core.Expression.IndexLookup",
+                                                        "target": {
+                                                            "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                                            "receiver": {
+                                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                "name": "ub"
+                                                            },
+                                                            "memberName": "values"
+                                                        },
+                                                        "index": {
+                                                            "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                            "text": "1"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "thenBranch": {
+                                                "statements": [
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Statement.Break"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "type": "com.wgslfuzz.core.Statement.Discard"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                    "receiver": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "ub"
+                                        },
+                                        "memberName": "values"
+                                    },
+                                    "memberName": "z"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                    "receiver": {
+                                        "type": "com.wgslfuzz.core.Expression.MemberLookup",
+                                        "receiver": {
+                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                            "name": "ub"
+                                        },
+                                        "memberName": "values"
+                                    },
+                                    "memberName": "w"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "15"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.FunctionCall",
+                            "callee": "insert",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "treeIndex"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "7"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Increment",
+                            "target": {
+                                "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                "name": "treeIndex"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Variable",
+                            "name": "count",
+                            "typeDecl": {
+                                "type": "com.wgslfuzz.core.TypeDecl.I32"
+                            },
+                            "initializer": {
+                                "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                "text": "0"
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.For",
+                            "init": {
+                                "type": "com.wgslfuzz.core.Statement.Variable",
+                                "name": "i",
+                                "initializer": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "0"
+                                }
+                            },
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                "operator": "LESS_THAN",
+                                "lhs": {
+                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                    "name": "i"
+                                },
+                                "rhs": {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "20"
+                                }
+                            },
+                            "update": {
+                                "type": "com.wgslfuzz.core.Statement.Increment",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                    "name": "i"
+                                }
+                            },
+                            "body": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Value",
+                                        "isConst": false,
+                                        "name": "result",
+                                        "initializer": {
+                                            "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                            "callee": "search",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                    "name": "i"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Switch",
+                                        "expression": {
+                                            "type": "com.wgslfuzz.core.Expression.Paren",
+                                            "target": {
+                                                "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                "name": "i"
+                                            }
+                                        },
+                                        "clauses": [
+                                            {
+                                                "caseSelectors": [
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "9"
+                                                    },
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "5"
+                                                    },
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "12"
+                                                    },
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "15"
+                                                    },
+                                                    {
+                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                        "text": "7"
+                                                    }
+                                                ],
+                                                "compoundStatement": {
+                                                    "statements": [
+                                                        {
+                                                            "type": "com.wgslfuzz.core.Statement.If",
+                                                            "condition": {
+                                                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                    "operator": "EQUAL_EQUAL",
+                                                                    "lhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "result"
+                                                                    },
+                                                                    "rhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                        "name": "i"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "thenBranch": {
+                                                                "statements": [
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Statement.Increment",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                            "name": "count"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "caseSelectors": [
+                                                    null
+                                                ],
+                                                "compoundStatement": {
+                                                    "statements": [
+                                                        {
+                                                            "type": "com.wgslfuzz.core.Statement.If",
+                                                            "condition": {
+                                                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                                                "target": {
+                                                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                    "operator": "SHORT_CIRCUIT_OR",
+                                                                    "lhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                            "operator": "SHORT_CIRCUIT_AND",
+                                                                            "lhs": {
+                                                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                "operator": "EQUAL_EQUAL",
+                                                                                "lhs": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                    "name": "result"
+                                                                                },
+                                                                                "rhs": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Unary",
+                                                                                    "operator": "MINUS",
+                                                                                    "target": {
+                                                                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                                                        "text": "1"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "rhs": {
+                                                                                "type": "com.wgslfuzz.core.Expression.Unary",
+                                                                                "operator": "LOGICAL_NOT",
+                                                                                "target": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                                                                    "callee": "contains",
+                                                                                    "args": [
+                                                                                        {
+                                                                                            "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                            "name": "i"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "rhs": {
+                                                                        "type": "com.wgslfuzz.core.Expression.Paren",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                            "operator": "SHORT_CIRCUIT_AND",
+                                                                            "lhs": {
+                                                                                "type": "com.wgslfuzz.core.Expression.FunctionCall",
+                                                                                "callee": "contains",
+                                                                                "args": [
+                                                                                    {
+                                                                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                        "name": "i"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "rhs": {
+                                                                                "type": "com.wgslfuzz.core.Expression.Binary",
+                                                                                "operator": "EQUAL_EQUAL",
+                                                                                "lhs": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                    "name": "result"
+                                                                                },
+                                                                                "rhs": {
+                                                                                    "type": "com.wgslfuzz.core.Expression.Identifier",
+                                                                                    "name": "i"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "thenBranch": {
+                                                                "statements": [
+                                                                    {
+                                                                        "type": "com.wgslfuzz.core.Statement.Increment",
+                                                                        "target": {
+                                                                            "type": "com.wgslfuzz.core.LhsExpression.Identifier",
+                                                                            "name": "count"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.If",
+                            "condition": {
+                                "type": "com.wgslfuzz.core.Expression.Paren",
+                                "target": {
+                                    "type": "com.wgslfuzz.core.Expression.Binary",
+                                    "operator": "EQUAL_EQUAL",
+                                    "lhs": {
+                                        "type": "com.wgslfuzz.core.Expression.Identifier",
+                                        "name": "count"
+                                    },
+                                    "rhs": {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "20"
+                                    }
+                                }
+                            },
+                            "thenBranch": {
+                                "statements": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Statement.Return",
+                                        "expression": {
+                                            "type": "com.wgslfuzz.core.Expression.Vec4ValueConstructor",
+                                            "args": [
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                    "text": "1"
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                    "text": "0"
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                    "text": "0"
+                                                },
+                                                {
+                                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                                    "text": "1"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "com.wgslfuzz.core.Statement.Return",
+                            "expression": {
+                                "type": "com.wgslfuzz.core.Expression.Vec4ValueConstructor",
+                                "args": [
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "0"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "0"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "1"
+                                    },
+                                    {
+                                        "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                        "text": "1"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "pipelineState": {
+        "uniformValues": {
+            "0": {
+                "0": {
+                    "type": "com.wgslfuzz.core.Expression.StructValueConstructor",
+                    "constructorName": "Uniforms",
+                    "args": [
+                        {
+                            "type": "com.wgslfuzz.core.Expression.Vec4ValueConstructor",
+                            "args": [
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "2i"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "18i"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "8i"
+                                },
+                                {
+                                    "type": "com.wgslfuzz.core.Expression.IntLiteral",
+                                    "text": "12i"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
