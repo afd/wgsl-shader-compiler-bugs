@@ -1,6 +1,17 @@
-`bug.html` should render `expected.png` and does on chrome but on firefox it does not.
+`bug.html` should render `expected.png` and does on Chrome but on Firefox it does not.
 
-The error is: TODO
+The Firefox produces this error:
+
+```
+Encountered one or more errors while creating shader module "Shader"
+WebGPU compilation info for shader module "Shader" (1 error(s), 0 warning(s), 0 info)
+
+Shader 'Shader' parsing error: expected expression, found "{"
+   ┌─ wgsl:24:20
+   │
+24 │         case 1, c, {
+   │                    ^ expected expression
+```
 
 The code snippet causing the error:
 
