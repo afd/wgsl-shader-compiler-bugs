@@ -1,3 +1,5 @@
+# Switch case not compiling
+
 `bug.html` should render `expected.png` and does on Chrome but on Firefox it does not.
 
 The Firefox produces this error:
