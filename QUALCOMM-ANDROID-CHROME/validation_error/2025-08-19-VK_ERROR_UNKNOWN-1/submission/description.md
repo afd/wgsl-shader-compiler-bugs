@@ -1,4 +1,4 @@
-## Motorola Qualcomm Phone Output
+# Motorola Qualcomm Unknown Vulkan Error
 
 `bug.html` renders `expected.png` on a Samsung Arm phone using Chrome, a Dell Intel laptop using Chrome and Firefox, and a Asus AMD laptop using Chrome and Firefox
 
