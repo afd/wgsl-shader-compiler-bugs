@@ -2,7 +2,7 @@
 
 `bug.html` should render `expected.png` and does on Chrome but on Firefox it does not.
 
-The Firefox produces this error:
+Firefox produces this error:
 
 ```
 Encountered one or more errors while creating shader module "Shader"
