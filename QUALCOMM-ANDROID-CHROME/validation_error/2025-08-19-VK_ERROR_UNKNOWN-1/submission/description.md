@@ -24,5 +24,7 @@ CreateGraphicsPipelines failed with VK_ERROR_UNKNOWN
 
 - Vendor: qualcomm
 - Architecture: adreno-6xx
+- Android version: 15
+- Build number: V1UOS35H.74-16-4-6
 - Chrome version: 139.0.7258.123 (Official Build) (64-bit)
 - about gpu report: `motorola-about-gpu-2025-08-19T14-25-18-756Z.txt`
