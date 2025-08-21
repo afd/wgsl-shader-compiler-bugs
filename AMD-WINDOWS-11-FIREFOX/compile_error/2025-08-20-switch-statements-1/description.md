@@ -48,5 +48,7 @@ error: expected expression, found "{"
 ```
 This is why I have filed it here.
 
+Naga version: 26.0.0
+
 This bug was found as part of the wgsl-fuzz project: https://github.com/mc-imperial/wgsl-fuzz
 
