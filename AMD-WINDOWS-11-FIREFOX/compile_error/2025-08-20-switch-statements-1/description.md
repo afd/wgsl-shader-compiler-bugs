@@ -18,7 +18,7 @@ Shader 'Shader' parsing error: expected expression, found "{"
 The code snippet causing the error:
 
 ```wgsl
-// This should compile but is not as the case statements are supposedly invalid according to firefox.
+// This should compile but does not as the case statements are supposedly invalid according to firefox.
 // On Chrome it correctly outputs red.
 // This was derived from a example in the wgsl specification: https://www.w3.org/TR/WGSL/#switch-statement
 const c = 2;
