@@ -1,4 +1,4 @@
-# Wrong image generated on AMD gpu when rendering a dead loop
+# Wrong image generated on AMD gpu when rendering a side effect free loop
 
 `bug.html` should render `expected.png` and does on a laptop with an Intel gpu, a phone with an ARM gpu and a phone with a Qualcomm gpu.
 
