@@ -36,11 +36,17 @@ case 3, default {
 return vec4(0.5, 0, 0.5, 1);
 ```
 
-When validated by naga a same result is given: 
+When validated by naga the same result is given:
+The command ran is `naga bug.wgsl`
+```
 Could not parse WGSL:
 error: expected expression, found "{"
    ┌─ bug.wgsl:23:20
    │
 23 │         case 1, c, {
    │                    ^ expected expression
+```
+This is why I have filed it here.
+
+This bug was found as part of the wgsl-fuzz project: https://github.com/mc-imperial/wgsl-fuzz
 
