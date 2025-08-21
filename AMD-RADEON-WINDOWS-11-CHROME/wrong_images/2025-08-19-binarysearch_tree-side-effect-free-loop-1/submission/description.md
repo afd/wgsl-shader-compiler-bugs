@@ -11,6 +11,12 @@ This suggests that it is not a problem with either Chrome or Firefox but somethi
 
 about:gpu chrome report for Asus AMD Laptop: `asus-about-gpu-2025-08-19T10-04-35-288Z.txt`
 
+Chrome: 139.0.7258.128 (Official Build) (64-bit) (cohort: Stable)
+
+Firefox: 141.0.3 (64-bit)
+
+Windows Version: 24H2
+
 APU - AMD Radeon (TM) Graphics - Primary/Integrated
 
 VRAM - 512 MB - DDR4 1333 MHz
@@ -102,7 +108,3 @@ Cores - 8
 Threads - 16
 
 RAM - 16 GB
-
-Chrome: 139.0.7258.128 (Official Build) (64-bit) (cohort: Stable)
-
-Firefox: 141.0.3 (64-bit)
