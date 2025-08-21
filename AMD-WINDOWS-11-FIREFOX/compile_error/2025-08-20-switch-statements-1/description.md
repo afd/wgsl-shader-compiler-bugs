@@ -35,3 +35,12 @@ case 3, default {
 }
 return vec4(0.5, 0, 0.5, 1);
 ```
+
+When validated by naga a same result is given: 
+Could not parse WGSL:
+error: expected expression, found "{"
+   ┌─ bug.wgsl:23:20
+   │
+23 │         case 1, c, {
+   │                    ^ expected expression
+
