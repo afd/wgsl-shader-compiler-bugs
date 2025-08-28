@@ -1,6 +1,9 @@
 # Looping forever while loop causes Dawn to Hang
 
-When running on a laptop with a AMD gpu and a laptop with an Intel gpu fatal errors produced by `crashes_dawn.html`:
+When running on a Windows 11 laptop with an AMD gpu and a Windows laptop with an Intel gpu fatal errors are produced when running `crash.html`.
+The fatal errors are not produced when run on a phone with a Qualcomm gpu or an ARM gpu
+
+The fatal errors are:
 
 ```
 Device lost: ID3D12Device::GetDeviceRemovedReason failed with DXGI_ERROR_DEVICE_HUNG (0x887A0006)
