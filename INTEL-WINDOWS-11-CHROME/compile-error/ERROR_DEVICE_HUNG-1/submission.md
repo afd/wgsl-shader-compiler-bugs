@@ -45,6 +45,8 @@ while (x == 1) {
 return vec4(1, x, x, 1);
 ```
 
+The above loop loops forever.
+
 ## Intel Laptop System Specification
 
 139.0.7258.128 (Official Build) (64-bit) (cohort: 139.0.7258.154 Rollout)
