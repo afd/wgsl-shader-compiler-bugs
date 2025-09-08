@@ -51,7 +51,9 @@ fn runFloyd()
                 continue;
             }
             /* dead code fragment: */
-            if (/* known value: true */ (/* known value: 0i */ correctOutput[1][1].unusedPadding[1] * (/* known value: 0i */ correctOutput[3][4].unusedPadding[0] + 1)) <= correctOutput[0][0].unusedPadding[1])
+            if (/* known value: true */ (correctOutput[1][1].unusedPadding[1] * (correctOutput[3][4].unusedPadding[0] + 1)) <= correctOutput[0][0].unusedPadding[1])
+            //                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            //                           value 0                                 value 0                                       value 0
             {
             }
             else
