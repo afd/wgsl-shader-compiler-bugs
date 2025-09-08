@@ -1,0 +1,62 @@
+{
+  "type" : "RenderJobResult",
+  "content" : {
+    "fatalErrors" : [ ],
+    "deviceLostReason" : null,
+    "adapterInfo" : {
+      "vendor" : "",
+      "architecture" : "",
+      "device" : "",
+      "description" : ""
+    },
+    "renderImageResults" : [ {
+      "compilationMessages" : [ {
+        "message" : "\nShader validation error: Entry point fragmentMain at Fragment is invalid\n = The `return` expression None does not match the declared return type Some([9])\n\n",
+        "type" : "error",
+        "lineNum" : 0,
+        "linePos" : 0,
+        "offset" : 0,
+        "length" : 0
+      } ],
+      "createShaderModuleValidationError" : "Shader module creation failed: Shader validation error",
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "Error matching ShaderStages(VERTEX) shader requirements against the pipeline, caused by: ShaderModule with 'Shader' label is invalid",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : null,
+      "frame" : null
+    }, {
+      "compilationMessages" : [ {
+        "message" : "\nShader validation error: Entry point fragmentMain at Fragment is invalid\n = The `return` expression None does not match the declared return type Some([9])\n\n",
+        "type" : "error",
+        "lineNum" : 0,
+        "linePos" : 0,
+        "offset" : 0,
+        "length" : 0
+      } ],
+      "createShaderModuleValidationError" : "Shader module creation failed: Shader validation error",
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "Error matching ShaderStages(VERTEX) shader requirements against the pipeline, caused by: ShaderModule with 'Shader' label is invalid",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : null,
+      "frame" : null
+    }, {
+      "compilationMessages" : [ {
+        "message" : "\nShader validation error: Entry point fragmentMain at Fragment is invalid\n = The `return` expression None does not match the declared return type Some([9])\n\n",
+        "type" : "error",
+        "lineNum" : 0,
+        "linePos" : 0,
+        "offset" : 0,
+        "length" : 0
+      } ],
+      "createShaderModuleValidationError" : "Shader module creation failed: Shader validation error",
+      "createShaderModuleOutOfMemoryError" : null,
+      "createShaderModuleInternalError" : null,
+      "otherValidationError" : "Error matching ShaderStages(VERTEX) shader requirements against the pipeline, caused by: ShaderModule with 'Shader' label is invalid",
+      "otherOutOfMemoryError" : null,
+      "otherInternalError" : null,
+      "frame" : null
+    } ]
+  }
+}
